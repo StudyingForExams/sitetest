@@ -10,18 +10,24 @@ function hvtrsDecode(hvtrs) {
 }
 
 function getHVTRS() {
-  // Get everything after /Learning/
+  // get everything after /Learning/
   let path = location.pathname.split('/Learning/')[1];
 
-  // If user pasted manually
-  if (!path || !path.startsWith('hvtrs')) {
-    path = prompt("Paste HVTRS link:");
+  if (path && path.startsWith('hvtrs')) {
+    return path;
   }
 
-  return path;
+  return prompt("Paste HVTRS link:");
 }
 
 const hvtrs = getHVTRS();
-const url = hvtrsDecode(hvtrs);
 
-document.getElementById("frame").src = url;
+if (hvtrs) {
+  const decodedURL = hvtrsDecode(hvtrs);
+
+  const duckduckgo =
+    "https://duckduckgo.com/html/?q=" +
+    encodeURIComponent(decodedURL);
+
+  window.location.replace(duckduckgo);
+}
