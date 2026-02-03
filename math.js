@@ -21,7 +21,7 @@ async function handleProxy(request) {
   const target = decodeHVTR(hvtr);
 
   return fetch(
-    `https://YOUR-WORKER.workers.dev/?url=${encodeURIComponent(target)}`,
+    `https://worker.lilryftlol.workers.dev/?url=${encodeURIComponent(target)}`,
     {
       method: request.method,
       headers: request.headers,
