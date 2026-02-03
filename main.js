@@ -23,5 +23,5 @@ document.getElementById('proxyForm').addEventListener('submit', e => {
   if (!url.startsWith('http')) url = 'https://' + url;
 
   const encoded = encodeHVTR(url);
-  window.location.href = `${BASE}/school/service/${encoded}`;
+  window.location.href = `${BASE}/school/service/?hvtr=${encodeURIComponent(encoded)}`;
 });
