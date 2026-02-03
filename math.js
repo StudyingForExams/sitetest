@@ -1,9 +1,12 @@
-const BASE = '/hvtrs-proxy';
+const BASE = '/sitetest';
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  if (url.pathname === `${BASE}/school/service/` && url.searchParams.has('hvtr')) {
+  if (
+    url.pathname === `${BASE}/school/service/` &&
+    url.searchParams.has('hvtr')
+  ) {
     event.respondWith(handleProxy(event.request));
   }
 });
@@ -24,7 +27,7 @@ async function handleProxy(request) {
   const target = decodeHVTR(hvtr);
 
   return fetch(
-    `https://worker.lilryftlol.workers.dev/?url=${encodeURIComponent(target)}`,
+    `worker.lilryftlol.workers.dev/?url=${encodeURIComponent(target)}`,
     {
       method: request.method,
       headers: request.headers,
