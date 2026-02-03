@@ -3,7 +3,7 @@ const BASE = '/hvtrs-proxy';
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  if (url.pathname.startsWith(`${BASE}/school/service/`)) {
+  if (url.pathname === `${BASE}/school/service/` && url.searchParams.has('hvtr')) {
     event.respondWith(handleProxy(event.request));
   }
 });
@@ -19,7 +19,8 @@ function decodeHVTR(hvtr) {
 }
 
 async function handleProxy(request) {
-  const hvtr = request.url.split('/school/service/')[1];
+  const url = new URL(request.url);
+  const hvtr = url.searchParams.get('hvtr');
   const target = decodeHVTR(hvtr);
 
   return fetch(
