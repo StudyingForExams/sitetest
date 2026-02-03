@@ -1,7 +1,9 @@
+const BASE = '/hvtrs-proxy';
+
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  if (url.pathname.startsWith('/school/service/')) {
+  if (url.pathname.startsWith(`${BASE}/school/service/`)) {
     event.respondWith(handleProxy(event.request));
   }
 });
