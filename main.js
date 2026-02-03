@@ -1,5 +1,9 @@
+const BASE = '/hvtrs-proxy';
+
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/math.js', { scope: '/' });
+  navigator.serviceWorker.register(`${BASE}/math.js`, {
+    scope: `${BASE}/`
+  });
 }
 
 function encodeHVTR(url) {
@@ -19,5 +23,5 @@ document.getElementById('proxyForm').addEventListener('submit', e => {
   if (!url.startsWith('http')) url = 'https://' + url;
 
   const encoded = encodeHVTR(url);
-  window.location.href = `/school/service/${encoded}`;
+  window.location.href = `${BASE}/school/service/${encoded}`;
 });
