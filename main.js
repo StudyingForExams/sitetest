@@ -1,4 +1,4 @@
-const BASE = '/hvtrs-proxy';
+const BASE = '/sitetest';
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register(`${BASE}/math.js`, {
